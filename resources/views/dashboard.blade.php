@@ -10,6 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <br>
+                    <a href="{{ route('magazijn.overzicht') }}" class="text-blue-600 underline">Overzicht Magazijn Jamin</a>
                 </div>
             </div>
         </div>
