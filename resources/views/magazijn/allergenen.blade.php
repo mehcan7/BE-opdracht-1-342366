@@ -5,6 +5,10 @@
         </h2>
     </x-slot>
 
+    @if (count($allergenen) === 0)
+        <meta http-equiv="refresh" content="4;url={{ route('magazijn.overzicht') }}">
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -14,22 +18,26 @@
                     <p>Barcode: {{ $productInfo['Barcode'] }}</p>
                 </div>
 
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b">
-                            <th class="p-2">Naam</th>
-                            <th class="p-2">Omschrijving</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($allergenen as $allergeen)
+                @if (count($allergenen) > 0)
+                    <table class="w-full text-left border-collapse">
+                        <thead>
                             <tr class="border-b">
-                                <td class="p-2">{{ $allergeen['Naam'] }}</td>
-                                <td class="p-2">{{ $allergeen['Omschrijving'] }}</td>
+                                <th class="p-2">Naam</th>
+                                <th class="p-2">Omschrijving</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($allergenen as $allergeen)
+                                <tr class="border-b">
+                                    <td class="p-2">{{ $allergeen['Naam'] }}</td>
+                                    <td class="p-2">{{ $allergeen['Omschrijving'] }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken</p>
+                @endif
 
             </div>
         </div>
