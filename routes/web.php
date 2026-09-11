@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LeveringController;
 use App\Http\Controllers\MagazijnController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/magazijn', [MagazijnController::class, 'overzicht'])->name('magazijn.overzicht');
+    Route::get('/magazijn/{product}/levering', [LeveringController::class, 'show'])->name('magazijn.levering');
 });
 
 require __DIR__.'/auth.php';
