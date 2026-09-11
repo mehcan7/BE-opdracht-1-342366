@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllergenenController;
 use App\Http\Controllers\LeveringController;
 use App\Http\Controllers\MagazijnController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/magazijn', [MagazijnController::class, 'overzicht'])->name('magazijn.overzicht');
     Route::get('/magazijn/{product}/levering', [LeveringController::class, 'show'])->name('magazijn.levering');
+    Route::get('/magazijn/{product}/allergenen', [AllergenenController::class, 'show'])->name('magazijn.allergenen');
 });
 
 require __DIR__.'/auth.php';
