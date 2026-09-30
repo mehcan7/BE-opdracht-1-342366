@@ -48,10 +48,24 @@
                         </tbody>
                     </table>
                 @else
-                    <p>
-                        Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is:
-                        {{ $eerstvolgendeLevering ? \Carbon\Carbon::parse($eerstvolgendeLevering)->format('d-m-Y') : 'onbekend' }}
-                    </p>
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Naam Product</th>
+                                <th class="p-2">Datum laatste levering</th>
+                                <th class="p-2">Aantal</th>
+                                <th class="p-2">Eerstvolgende levering</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-2" colspan="4">
+                                    Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is:
+                                    {{ $eerstvolgendeLevering ? \Carbon\Carbon::parse($eerstvolgendeLevering)->format('d-m-Y') : 'onbekend' }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 @endif
 
             </div>

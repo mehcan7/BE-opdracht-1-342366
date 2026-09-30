@@ -32,8 +32,8 @@
                                     </a>
                                 </td>
                                 <td class="p-2">
-                                    <a href="{{ route('magazijn.levering', $product['Id']) }}" class="text-blue-600 font-bold" title="Leverantie Info">
-                                        &#10067;
+                                    <a href="{{ route('magazijn.levering', $product['Id']) }}" class="text-blue-600 font-bold text-xl" title="Leverantie Info">
+                                        ?
                                     </a>
                                 </td>
                             </tr>

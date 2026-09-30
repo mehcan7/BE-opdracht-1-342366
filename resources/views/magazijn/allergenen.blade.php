@@ -18,26 +18,26 @@
                     <p>Barcode: {{ $productInfo['Barcode'] }}</p>
                 </div>
 
-                @if (count($allergenen) > 0)
-                    <table class="w-full text-left border-collapse">
-                        <thead>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="p-2">Naam</th>
+                            <th class="p-2">Omschrijving</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($allergenen as $allergeen)
                             <tr class="border-b">
-                                <th class="p-2">Naam</th>
-                                <th class="p-2">Omschrijving</th>
+                                <td class="p-2">{{ $allergeen['Naam'] }}</td>
+                                <td class="p-2">{{ $allergeen['Omschrijving'] }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($allergenen as $allergeen)
-                                <tr class="border-b">
-                                    <td class="p-2">{{ $allergeen['Naam'] }}</td>
-                                    <td class="p-2">{{ $allergeen['Omschrijving'] }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p>In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken</p>
-                @endif
+                        @empty
+                            <tr class="border-b">
+                                <td class="p-2" colspan="2">In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
 
             </div>
         </div>

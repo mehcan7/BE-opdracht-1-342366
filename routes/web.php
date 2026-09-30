@@ -18,7 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+Route::middleware(['auth', 'rol:Admin,Magazijnmedewerker'])->group(function () {
     Route::get('/magazijn', [MagazijnController::class, 'overzicht'])->name('magazijn.overzicht');
     Route::get('/magazijn/{product}/levering', [LeveringController::class, 'show'])->name('magazijn.levering');
     Route::get('/magazijn/{product}/allergenen', [AllergenenController::class, 'show'])->name('magazijn.allergenen');

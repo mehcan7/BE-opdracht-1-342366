@@ -15,11 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Eén testaccount per gebruikersrol
+        $gebruikers = [
+            ['name' => 'Admin', 'email' => 'admin@gmail.com', 'rol' => 'Admin', 'password' => 'admin'],
+            ['name' => 'Magazijnmedewerker', 'email' => 'magazijnmedewerker@gmail.com', 'rol' => 'Magazijnmedewerker', 'password' => 'magazijnmedewerker'],
+            ['name' => 'Klant', 'email' => 'klant@gmail.com', 'rol' => 'Klant', 'password' => 'klant'],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($gebruikers as $gebruiker) {
+            User::updateOrCreate(
+                ['email' => $gebruiker['email']],
+                $gebruiker + ['email_verified_at' => now()],
+            );
+        }
     }
 }
