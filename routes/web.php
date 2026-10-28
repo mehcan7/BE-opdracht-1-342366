@@ -28,6 +28,8 @@ Route::middleware(['auth', 'rol:Admin,Magazijnmedewerker'])->group(function () {
 
     Route::get('/leveranciers', [LeverancierController::class, 'overzicht'])->name('leverancier.overzicht');
     Route::get('/leveranciers/{leverancier}/producten', [LeverancierController::class, 'producten'])->name('leverancier.producten');
+    Route::get('/leveranciers/{leverancier}/producten/{product}/levering', [LeverancierController::class, 'nieuweLevering'])->name('leverancier.levering');
+    Route::post('/leveranciers/{leverancier}/producten/{product}/levering', [LeverancierController::class, 'opslaanLevering'])->name('leverancier.levering.opslaan');
 });
 
 require __DIR__.'/auth.php';
