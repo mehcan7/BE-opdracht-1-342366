@@ -45,4 +45,28 @@ class LeverancierRepository
 
         return $producten;
     }
+
+    // Product- en leveranciergegevens voor het scherm Levering product
+    public function leveringProductInfo(int $leverancierId, int $productId): array|false
+    {
+        $stmt = $this->pdo->prepare('CALL sp_GetLeveringProductInfo(:leverancierId, :productId)');
+        $stmt->execute(['leverancierId' => $leverancierId, 'productId' => $productId]);
+        $info = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $info;
+    }
+
+    // Slaat de levering op en verhoogt het aantal in het magazijn
+    public function createLevering(int $leverancierId, int $productId, int $aantal, string $datumEerstVolgendeLevering): void
+    {
+        $stmt = $this->pdo->prepare('CALL sp_CreateLevering(:leverancierId, :productId, :aantal, :datum)');
+        $stmt->execute([
+            'leverancierId' => $leverancierId,
+            'productId' => $productId,
+            'aantal' => $aantal,
+            'datum' => $datumEerstVolgendeLevering,
+        ]);
+        $stmt->closeCursor();
+    }
 }

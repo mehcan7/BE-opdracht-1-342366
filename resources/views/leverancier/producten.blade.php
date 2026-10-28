@@ -37,7 +37,9 @@
                                 <td class="p-2">{{ $product['AantalAanwezig'] ?? 0 }}</td>
                                 <td class="p-2">{{ (float) $product['VerpakkingsEenheidInKilogram'] }} kg</td>
                                 <td class="p-2">{{ \Carbon\Carbon::parse($product['LaatsteLevering'])->format('d-m-Y') }}</td>
-                                <td class="p-2 text-xl font-bold text-red-600">+</td>
+                                <td class="p-2">
+                                    <a href="{{ route('leverancier.levering', [$leverancierInfo['Id'], $product['ProductId']]) }}" class="text-xl font-bold text-red-600" title="Nieuwe levering">+</a>
+                                </td>
                             </tr>
                         @empty
                             <tr class="border-b">
