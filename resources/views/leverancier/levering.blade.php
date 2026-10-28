@@ -5,6 +5,10 @@
         </h2>
     </x-slot>
 
+    @if ($melding)
+        <meta http-equiv="refresh" content="4;url={{ route('leverancier.producten', $info['LeverancierId']) }}">
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -15,6 +19,12 @@
                     <p>Contactpersoon: {{ $info['ContactPersoon'] }}</p>
                     <p>Mobiel: {{ $info['Mobiel'] }}</p>
                 </div>
+
+                @if ($melding)
+                    <div class="mb-4 p-3 border border-red-300 bg-red-50 text-red-700 rounded">
+                        {{ $melding }}
+                    </div>
+                @endif
 
                 <form method="POST" action="{{ route('leverancier.levering.opslaan', [$info['LeverancierId'], $info['ProductId']]) }}" class="max-w-md">
                     @csrf
