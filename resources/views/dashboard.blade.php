@@ -13,6 +13,8 @@
                     <br>
                     @if (Auth::user()->magMagazijnZien())
                         <a href="{{ route('magazijn.overzicht') }}" class="text-blue-600 underline">Overzicht Magazijn Jamin</a>
+                        <br>
+                        <a href="{{ route('leverancier.overzicht') }}" class="text-blue-600 underline">Overzicht Leveranciers</a>
                     @endif
                 </div>
             </div>
